@@ -104,8 +104,9 @@ margin-top: 2px;
 
 #reporth2{
 background-color: aliceblue;
-margin-left: auto;
-padding-right: 600px;
+display: flex;
+justify-content: flex-end;
+padding-right: 400px;
 padding-bottom: 0px;
 position:absolute;
 }
@@ -117,5 +118,3 @@ justify-content: flex-end;
 margin-top: 20%;
 margin-left: auto;
 }
- 
-
