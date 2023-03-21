@@ -1,5 +1,5 @@
 let lat = '42.9634'
-let long = '85.6681'
+let long = '-85.6681'
 
 let gotPosition = function(pos){
     // let lat = pos.coords.latitude;
@@ -13,7 +13,7 @@ let gotPosition = function(pos){
 //    getWeatherText(url);
 // }
 
-var url = api.openweathermap.org/data/2.5/forecast?lat=42.9634&lon=85.6681&appid=8af4e7bd8712d038a037b999da84959e&units=imperial
+var url = api.openweathermap.org/data/2.5/forecast?lat=42.9634&lon=-85.6681&appid=8af4e7bd8712d038a037b999da84959e&units=imperial
 console.log(url)
 
 
