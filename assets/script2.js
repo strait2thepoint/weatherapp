@@ -1,3 +1,5 @@
+//tutorial I was trying to follow is below:
+
 const APIkey = "8af4e7bd8712d038a037b999da84959e";
 
 const queryURL = "http://api.openweathermap.org/data/2.5/forecast?" //I know this works
