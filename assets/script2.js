@@ -1,101 +1,98 @@
-//tutorial I was trying to follow is below:
+const submitBtn = document.getElementById('submit-btn');
+const city = document.getElementById("city"); 
 
 const APIkey = "8af4e7bd8712d038a037b999da84959e";
 
-const queryURL = "http://api.openweathermap.org/data/2.5/forecast?" //I know this works
+const queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" //I know this works
 
 const measurement = "&units=imperial" //I know this works
 
-//What is in the actual code:
-// let gotPosition = function(pos){
-//     let lat = pos.coords.latitude;
-//     let lon = pos.coords.longitude;
-//     getForecast(lat, lon);  
-//     }
+//"https://api.openweathermap.org/data/2.5/forecast?q=wyoming&appid=8af4e7bd8712d038a037b999da84959e&units=imperial "
 
-//My own version:
-let gotPosition = function(pos){
-let lat = '42.3314'
-let lon = '-83.0458'
-getForecast(lat, lon);  
-}
+// const getForecast = fetch(queryURL+cityInput+"&appid="+APIkey+measurement)
 
-//Modified what is in actual code:
-// let getForecast = function(lat, lon){
-//     let url = "https://api.openweathermap.org/data/2.5/onecall?lat=42.3314&lon=-83.0458&exclude=current,minutely,hourly&appid=8af4e7bd8712d038a037b999da84959e"
-//     getWeatherText(url);
+ function getCity(e){
+  e.preventDefault();
+const city =document.getElementById('city').value
+console.log(city)
+const requestUrl = queryURL+city+"&appid="+APIkey+measurement
+
+
+function getAPI(requestUrl){
+  fetch(requestUrl)
+  .then((response)=> response.json())
+  .then((responseData) => {
+    console.log(responseData)
+
+    //I really want to replace "0" with "i"
+    const dailyForecastCard ={
+   "temp": responseData.list[0].main.temp,
+   "clouds": responseData.list[0].weather.main, //not getting this one
+   "windSd": responseData.list[0].wind.speed,
+   "humidity": responseData.list[0].humidity,  //not getting this one
+   "icon": responseData.list[0].weather.icon//not getting this one- need to obtain the icon from openweathermap
+  }
+    console.log(dailyForecastCard);
+  
+  //for loop here, attempting to loop through 0-4 and obtain all the data from those points?
+ var dailyForecastDays = function(dailyForecastCard) {    
+      var i = [0, 1, 2, 3, 4]              
+    for (var i = 1; i <= num; i++) {                     
+      console.log(i);                                    
+    }
+    dailyForecastDays(dailyForecastCard);   
+  };
+
+  // var map = (arr, cb) => {                                 ???
+  //   var result = [];                                     ???
+  //   for (var index = 0; index < arr.length; index++) {   ???
+  //     var currentElement = arr[index];                   ???
+  //     result.push(cb(currentElement, index));            ???
+  //   }
+  //   return result;                                       ???
+  // };
+
+//I kept this around in case I need it later:
+  //  const lat = responseData.city.coord.lat 
+  //  const lon = responseData.city.coord.lon
+  //  console.log(lat) //43.0002
+  //  console.log(lon) //-107.5009
+
+  //  const http = "https://api.openweathermap.org/data/2.5/weather?lat="
+  //  const requestLatLon = http + lat + "&lon=" + lon + "&appid=" + APIkey + measurement
+
+   //https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=8af4e7bd8712d038a037b999da84959e&units=imperial (functional)
+
+//  function weatherData(requestLatLon){
+// fetch(requestLatLon)
+// .then((response)=>response.json())
+// .then((responseWeather)=>{
+//   console.log(responseWeather)
+// })
 // }
-
-//My own version:
-let getForecast = function(lat, lon){
-    let requestURL = (queryURL) + "lat="+ lat + "&lon=" + lon + "&appid=" + (APIkey) + (measurement); //I know this works by itself.  IDK in the function
-    getWeatherText(requestURL);
+//  weatherData(requestLatLon);
+})
 }
 
-async function getWeatherText (requestURL){
-    let weatherObject = await fetch(requestURL);
-    let weatherText = await weatherObject.text();
-    parseWeather(weatherText);   
+getAPI(requestUrl);
 }
 
-let parseWeather = function(weatherText){
-    let weatherJSON = JSON.parse(weatherText);
-    console.log(weatherJSON);
-    let dailyForecast = weatherJSON.daily;
-    //console.log(dailyForecast);
-    for (i = 0; i < dailyForecast.length; i++) {
-        let day = dailyForecast[i];
-        let today = new Date().getDay() + i;
-        if (today > 6){
-            today = today - 7;
-    }
-        let dayOfWeek = getDayOfWeek(today);
-        let description = day.weather[0].icon;
-        let sunrise = timestampToTime(day.sunrise);
-        let sunset = timestampToTime(day.sunset);
-        let highTemp = kToF(day.temp.max);
-        let lowTemp = kToF(day.temp.min);
-        let humidity = day.humidity;
-        let windSpeed = day.wind_speed;
-        let windGust = day.wind_gust;
-        displayWeatherDay(dayOfWeek, description, icon, sunrise, sunset, highTemp, lowTemp, humidity, windSpeed, windGust);
-    }
-  }
+
+
+//data handler functions- parse temp, humidity, etc. 1. current forecast to local storage.  2. 5 day forecast.
+//function data.map (look up tutorial)
+//create card with info that we want
+
+// localStorage.setItem
+// localStorage.getItem
+
+//using the city we will send to API, get back lat & lon
+//lat & lon to get weather info
+//current weather info to display on card
+//5 day forecast
+
+
   
-  let displayWeatherDay = function(dayOfWeek, description, icon, sunrise, sunset, highTemp, lowTemp, humidity, windSpeed, windGust){
-    let out = "<div class='weatherDay'><img scr='http://openweathermap.org/img/wn" + icon + ".png'/>";
-    out += "<h2>" + dayOfWeek + "</h2>";
-    out += "<h3>" + description + "</h3>";
-    out += "<p>Sunrise: " + sunrise + "</p>";
-    out += "<p>Sunset: " + sunset + "</p>";
-    out += "<p>High Temperature: " + highTemp + "F</p>";
-    out += "<p>Low Temperature: " + lowTemp + "F</p>";
-    out += "<p>Humidity: " + humidity + "%</p>";
-    out += "<p>Wind Speed: " + Math.round(windSpeed) + "with gusts up to " + Math.round(windGust) + "</p></div>";
-    document.getElementById("forecasat").innerHTML += out;
-  }
-  
-  let getDayOfWeek = function(dayNum){
-    var weekday = new Array(7);
-    weekday[0] ="Sunday";
-    weekday[1] ="Monday";
-    weekday[2] ="Tuesday";
-    weekday[3] ="Wednesday";
-    weekday[4] ="Thursday";
-    weekday[5] ="Friday";
-    weekday[6] ="Saturday";
-  }
-  
-  let timestampToTime = function(timeStamp){
-    let date = new Date(timeStamp * 1000);
-    let hours = date.getHours();
-    let minutes = "";
-    if (date.getMinutes()<10){
-        minutes = "0" + date.getMinutes();
-    }else{
-        minutes = date.getMinutes();
-    }
-    return hours + ":" + minutes;
-  }
-navigator.geolocation.getCurrentPosition
-(gotPosition);
+
+
+submitBtn.addEventListener('click', getCity);
