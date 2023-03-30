@@ -18,9 +18,9 @@ box-shadow: 25px;
 }
 
 .header, h1{
-    display: flex;
-    padding-left: 200px;
-    color: aliceblue;
+display: flex;
+padding-left: 200px;
+color: aliceblue;
 }
 
 .container{
@@ -90,31 +90,4 @@ border-color: var(--hue-dark);
 box-shadow: 0 0 10px 2px;
 transform: translateY(-0.1rem);
 transition: transform 150ms;
-}
-
-.report{
-background-color: aliceblue;
-display: flex;
-flex-direction: row;
-width: 75%;
-color: var(--hue-dark);
-margin: auto;
-margin-top: 2px;
-}
-
-#reporth2{
-background-color: aliceblue;
-display: flex;
-justify-content: flex-end;
-padding-right: 400px;
-padding-bottom: 0px;
-position:absolute;
-}
-
-.fdf, h3{
-display: flex;
-padding: 5px;
-justify-content: flex-end;
-margin-top: 20%;
-margin-left: auto;
 }
