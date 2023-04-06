@@ -1,131 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/styles.css">
-    
-    <script src="./assets/script2.js" defer></script>
-    <title>WeatherApp</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/styles.css">
+
+  <script src="./assets/script2.js" defer></script>
+  <title>WeatherApp</title>
 </head>
+
 <body class="body">
-    <div class="header">
+  <div class="header">
     <header>
-        <h1>Weather Dashboard</h1>
+      <h1>Weather Dashboard</h1>
     </header>
+  </div>
+
+  <div class="container">
+    <div class="topbox">
+      <section class="sidebox">
+        <form>
+          <div class="form-group">
+            <label for="city">
+              <h2>Search for a City</h2>
+            </label>
+            <input size="33" type="text" class="form-control" id="city" placeholder="city">
+          </div><br />
+          <button type="submit" class="btn-primary" id="submit-btn">Submit</button>
+        </form>
+      </section>
+      <section class="report">
+        <h2 id="myData">Current Forecast</h2>
+        <!-- <img id = "icon" src="..." alt="icon of weather description">   ICON -->
+
+        <ul class="list-group">
+          <li id="currenttemp">Temperature</li>
+          <li id="currenthumidity">Humidity</li>
+          <li id="currentwindSpeed">Wind Speed</li>
+          <li id="currentdecription">Description</li>
+        </ul>
+      </section>
+    </div>
+    <br />
+
+    <div class="midrow">
+      <div id="column">
+        <h2 id="saved">Saved Cities</h2>
+        <button type="submit" id="1" class="savedbtn">Grand Rapids</button>
+        <button type="submit" id="2" class="savedbtn">Detroit</button>
+        <button type="submit" id="3" class="savedbtn">Lansing</button>
+        <button type="submit" id="4" class="savedbtn">Saginaw</button>
+        <button type="submit" id="5" class="savedbtn">Holland</button>
+        <button type="submit" id="6" class="savedbtn">Grand Haven</button>
+        <button type="submit" id="7" class="savedbtn">Kalamazoo</button>
+        <button type="submit" id="8" class="savedbtn">Muskegon</button>
+      </div>
+      <h2 id="fdf">5-Day Forecast</h2> <br />
     </div>
 
-    <div class="container">
-<div class="topbox">
-        <section class="sidebox">
-          <form>
-            <div class="form-group">
-              <label for="city"><h2>Search for a City</h2></label>
-              <input size ="33" type="text" class="form-control" id="city" placeholder="city">
-            </div><br/>
-            <button type="submit" class="btn-primary" id="submit-btn">Submit</button>
-          </form>
-        </section>
-        <section class = "report">
-          <h2 id = "myData">Current Forecast</h2>
-          <img id = "icon" src="..." alt="icon of weather description">   <!--ICON -->
+    <div class="card-container">
+      <div class="card">
+        <div class="card-body">
+          <img src="..." class="icon" alt="icon of weather description"> 
+          <h3 class="day">Day</h3>
 
           <ul class="list-group">
-            <li id="currenttemp">Temperature</li>
-            <li id="currenthumidity">Humidity</li>
-            <li id="currentwindSpeed">Wind Speed</li>
-            <li id="currentdecription">Description</li>
+            <li class="temperature">Temperature</li>
+            <li class="humidity">Humidity</li>
+            <li class="description">Description</li>
+            <li class="windspeed">Wind Speed</li>
           </ul>
-        </section>
-</div>
-<br/> 
+        </div>
+      </div>
 
-<div class="midrow"
-         <section id="column">
-          <h2 id="saved">Saved Cities</h2>
-            <button type="submit" id="1" class="btn city">Grand Rapids</button>
-            <button type="submit" id="2" class="btn city">Detroit</button>
-            <button type="submit" id="3" class="btn city">Lansing</button>
-            <button type="submit" id="4" class="btn city">Saginaw</button>
-            <button type="submit" id="5" class="btn city">Holland</button>
-            <button type="submit" id="6" class="btn city">Grand Haven</button>
-            <button type="submit" id="7" class="btn city">Kalamazoo</button>
-            <button type="submit" id="8" class="btn city">Muskegon</button>
-        </section>
-<h2 id="fdf">5-Day Forecast</h2> <br/>
-</div>
-  <div class = "card-container">
-  <div class="card">
-    <div class="card-body">
-      <img src="..." class="icon" alt="icon of weather description">   <!--ICON -->
-      <h3 class="day">Day</h3>
-    
-    <ul class="list-group">
-      <li class="temperature">Temperature</li>
-      <li class="humidity">Humidity</li>
-      <li class="description">Description</li>
-      <li class="windspeed">Wind Speed</li>
-    </ul>
-  </div>
-  </div>
+      <div class="card">
+        <div class="card-body">
+          <img src="..." class="icon" alt="icon of weather description">  
+          <h3 class="day">Day</h3>
 
-  <div class="card">
-    <div class="card-body">
-      <img src="..." class="icon" alt="icon of weather description">   <!--ICON -->
-      <h3 class="day">Day</h3>
-    
-    <ul class="list-group">
-      <li class="temperature">Temperature</li>
-      <li class="humidity">Humidity</li>
-      <li class="description">Description</li>
-      <li class="windspeed">Wind Speed</li>
-    </ul>
-  </div>
-  </div>
+          <ul class="list-group">
+            <li class="temperature">Temperature</li>
+            <li class="humidity">Humidity</li>
+            <li class="description">Description</li>
+            <li class="windspeed">Wind Speed</li>
+          </ul>
+        </div>
+      </div>
 
-  <div class="card">
-    <div class="card-body">
-      <img src="..." class="icon" alt="icon of weather description">   <!--ICON -->
-      <h3 class="day">Day</h3>
-    
-    <ul class="list-group">
-      <li class="temperature">Temperature</li>
-      <li class="humidity">Humidity</li>
-      <li class="description">Description</li>
-      <li class="windspeed">Wind Speed</li>
-    </ul>
-  </div>
-  </div>
+      <div class="card">
+        <div class="card-body">
+          <img src="..." class="icon" alt="icon of weather description">  
+          <h3 class="day">Day</h3>
 
-  <div class="card">
-    <div class="card-body">
-      <img src="..." class="icon" alt="icon of weather description">   <!--ICON -->
-      <h3 class="day">Day</h3>
-    
-    <ul class="list-group">
-      <li class="temperature">Temperature</li>
-      <li class="humidity">Humidity</li>
-      <li class="description">Description</li>
-      <li class="windspeed">Wind Speed</li>
-    </ul>
-  </div>
-  </div>
+          <ul class="list-group">
+            <li class="temperature">Temperature</li>
+            <li class="humidity">Humidity</li>
+            <li class="description">Description</li>
+            <li class="windspeed">Wind Speed</li>
+          </ul>
+        </div>
+      </div>
 
-  <div class="card">
-    <div class="card-body">
-      <img src="..." class="icon" alt="icon of weather description">   <!--ICON -->
-      <h3 class="day">Day</h3>
-    
-    <ul class="list-group">
-      <li class="temperature">Temperature</li>
-      <li class="humidity">Humidity</li>
-      <li class="description">Description</li>
-      <li class="windspeed">Wind Speed</li>
-    </ul>
-  </div>
-  </div>
-</div>
+      <div class="card">
+        <div class="card-body">
+          <img src="..." class="icon" alt="icon of weather description">  
+          <h3 class="day">Day</h3>
+
+          <ul class="list-group">
+            <li class="temperature">Temperature</li>
+            <li class="humidity">Humidity</li>
+            <li class="description">Description</li>
+            <li class="windspeed">Wind Speed</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <img src="..." class="icon" alt="icon of weather description">  
+          <h3 class="day">Day</h3>
+
+          <ul class="list-group">
+            <li class="temperature">Temperature</li>
+            <li class="humidity">Humidity</li>
+            <li class="description">Description</li>
+            <li class="windspeed">Wind Speed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
 </body>
+
 </html>

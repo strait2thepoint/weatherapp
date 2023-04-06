@@ -100,34 +100,55 @@ transition: transform 150ms;
 .midrow{
 display: flex;
 justify-content: space-between;
-padding-top: 15px;
-max-width: 100%vw;
 }
 
 #column{
-display:flex;
-justify-content: flex-start;
-flex-direction: column;
+    display:flex;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 
 #saved{
-color:#33128b;
-display: flex;
-justify-content: flex-start;
-padding-left: 80px;
-margin-top: 0px;
+    color:#33128b;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 80px;
+    margin-top: 0px;
 }
 
-.city{
-display: none;
+.savedbtn{
+    display: flex;
+    justify-content: flex-start;
+    background-color: #32128b71;
+    width: 20%;
+    padding: 5px 132px;
+    margin: 5px 0px 10px 40px;
+    box-shadow: 0 0 3px 1px;
+    display: none;
+    color:aliceblue;
 }
+
+.savedbtn:hover{
+    cursor: pointer;
+    border-radius: 5px;
+    border-color: #180155;
+    box-shadow: 0 0 10px 2px;
+    transform: translateY(0.1rem);
+    transition: transform 150ms;
+}
+
 
 #fdf{
+display: flex;
+justify-content: flex-end;
 background-image: linear-gradient(to right, #33128b, rgb(181, 180, 245));
-padding: 30px;
 color: aliceblue;
 padding: 40px 500px;
-margin: auto;
+}
+
+#fdfbox{
+display: flex;
+justify-content: flex-start;
 }
 
 .card{

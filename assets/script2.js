@@ -27,22 +27,32 @@ const city =document.getElementById('city').value
 return city;
 }
 
+// const temps = (fiveDayArr) => console.log(`${temp[0]}`); //also goes with for/of
 //getting the data for 5 days only
 const getFiveDayData = (data)=>{
   const fiveDay = data.slice(1,6);
-  console.log(fiveDay) 
- const fiveDayArr = fiveDay.map((each)=>{
+ const fiveDayArr = fiveDay.map((targetDay)=>{
   return {
-     temp: each.main.temp,
-      clouds : each.weather[0].main, 
-      windSd : each.wind.speed,
-      humidity : each.main.humidity,  
-      icon : each.weather[0].icon
-}}) 
+     temp: targetDay.main.temp,
+      clouds : targetDay.weather[0].main, 
+      windSpeed : targetDay.wind.speed,
+      humidity : targetDay.main.humidity,  
+      icon : `https://openweathermap.org/img/wn/${targetDay.weather[0].icon}@2x.png`   
+} 
+}) 
+
 return fiveDayArr; //create cards
 // console.log(fiveDayArr) //I can use fiveDayArr as input for the next function.  
 }
 
+// console.log(`Temperature:\n`); //trying out the for/of method
+
+// for(const temp of temps){ //trying out for/of
+//   outputTemps(temp);
+// }
+
+
+//Thinking that I need to loop through the length of the array in order to obtain the data and then attach it to the cards.  Not sure how to do that.
 //parse data into cards?
 
 //for loop here, attempting to loop through 0-4 and obtain all the data from those points?
@@ -102,9 +112,24 @@ return requestUrl;
  const city = getCity()
 const requestURL = makeURL(city)
 const responseData  = await fetchData(requestURL)
-const fiveDayData = getFiveDayData(responseData) //fiveDayData needs to go into a call response
- }
+const fiveDayData = getFiveDayData(responseData) 
+  makeFiveDay(fiveDayData)
+//fiveDayData needs to go into a call response
+}
 
+const makeFiveDay = (data) => {
+  console.log("in my make five Day")
+  console.log(data)
+var cardContainer = document.querySelector(".card-container").children
+for (let i = 0; i < cardContainer.length; i++) {
+var myImage = cardContainer[i].children[0].children[0]
+var myTemperature = cardContainer[i].children[0].children[2].children[0]
+var myHumidity = cardContainer[i].children[0].children[2].children[1]
+var myDescription = cardContainer[i].children[0].children[2].children[2]
+var myWindSpeed = cardContainer[i].children[0].children[2].children[3]
+console.log(myImage)
+}
+}
 //eventlistener for the submit button, this starts the whole machine
 submitBtn.addEventListener('click', handleSubmit);
 
@@ -113,3 +138,4 @@ submitBtn.addEventListener('click', handleSubmit);
 // var p = document.createElement('p');
 // p.textContent = 'This is some data that will be appended to the div element';
 // div.appendChild(p);
+
