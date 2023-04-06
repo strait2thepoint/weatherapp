@@ -27,7 +27,6 @@ const city =document.getElementById('city').value
 return city;
 }
 
-// const temps = (fiveDayArr) => console.log(`${temp[0]}`); //also goes with for/of
 //getting the data for 5 days only
 const getFiveDayData = (data)=>{
   const fiveDay = data.slice(1,6);
@@ -41,19 +40,8 @@ const getFiveDayData = (data)=>{
 } 
 }) 
 
-return fiveDayArr; //create cards
-// console.log(fiveDayArr) //I can use fiveDayArr as input for the next function.  
+return fiveDayArr;  
 }
-
-// console.log(`Temperature:\n`); //trying out the for/of method
-
-// for(const temp of temps){ //trying out for/of
-//   outputTemps(temp);
-// }
-
-
-//Thinking that I need to loop through the length of the array in order to obtain the data and then attach it to the cards.  Not sure how to do that.
-//parse data into cards?
 
 //for loop here, attempting to loop through 0-4 and obtain all the data from those points?
 // var dailyForecastDays = function(dailyForecastCard) {    
@@ -84,10 +72,6 @@ return fiveDayArr; //create cards
     // }
     //  weatherData(requestLatLon);
 
-//data handler functions- parse temp, humidity, etc. 1. current forecast to local storage.  2. 5 day forecast.
-//function data.map (look up tutorial)
-//create card with info that we want
-//get weather icon from API
 
 //SAVE SEARCHED CITIES IN LOCAL STORAGE
 // localStorage.setItem
@@ -122,20 +106,16 @@ const makeFiveDay = (data) => {
   console.log(data)
 var cardContainer = document.querySelector(".card-container").children
 for (let i = 0; i < cardContainer.length; i++) {
+  // console.log("today's data")
+  // console.log(data[i])
 var myImage = cardContainer[i].children[0].children[0]
+console.log(myImage)
+myImage.src = data[i].icon
 var myTemperature = cardContainer[i].children[0].children[2].children[0]
 var myHumidity = cardContainer[i].children[0].children[2].children[1]
 var myDescription = cardContainer[i].children[0].children[2].children[2]
 var myWindSpeed = cardContainer[i].children[0].children[2].children[3]
-console.log(myImage)
 }
 }
 //eventlistener for the submit button, this starts the whole machine
 submitBtn.addEventListener('click', handleSubmit);
-
-//Found code that might be useful from https://www.tutorialspoint.com/how-to-append-data-to-div-element-using-javascript#:~:text=We%20can%20append%20data%20to,content%20within%20the%20.
-// var div = document.querySelector('div');
-// var p = document.createElement('p');
-// p.textContent = 'This is some data that will be appended to the div element';
-// div.appendChild(p);
-
