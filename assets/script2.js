@@ -27,7 +27,6 @@ const city =document.getElementById('city').value
 return city;
 }
 
-// const temps = (fiveDayArr) => console.log(`${temp[0]}`); //also goes with for/of
 //getting the data for 5 days only
 const getFiveDayData = (data)=>{
   const fiveDay = data.slice(1,6);
@@ -41,57 +40,8 @@ const getFiveDayData = (data)=>{
 } 
 }) 
 
-return fiveDayArr; //create cards
-// console.log(fiveDayArr) //I can use fiveDayArr as input for the next function.  
+return fiveDayArr;  
 }
-
-// console.log(`Temperature:\n`); //trying out the for/of method
-
-// for(const temp of temps){ //trying out for/of
-//   outputTemps(temp);
-// }
-
-
-//Thinking that I need to loop through the length of the array in order to obtain the data and then attach it to the cards.  Not sure how to do that.
-//parse data into cards?
-
-//for loop here, attempting to loop through 0-4 and obtain all the data from those points?
-// var dailyForecastDays = function(dailyForecastCard) {    
-//   var i = [0, 1, 2, 3, 4]              
-//   for (var i = 1; i <= num; i++) {                     
-//     console.log(i);                                    
-//   }
-//   dailyForecastDays(dailyForecastCard);   
-// };
-
-//I kept this around in case I need it later:
-//  const lat = responseData.city.coord.lat 
-//  const lon = responseData.city.coord.lon
-//  console.log(lat) //43.0002
-//  console.log(lon) //-107.5009
-
-//  const http = "https://api.openweathermap.org/data/2.5/weather?lat="
-//  const requestLatLon = http + lat + "&lon=" + lon + "&appid=" + APIkey + measurement
-
-//https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=8af4e7bd8712d038a037b999da84959e&units=imperial (functional)
-
-//  function weatherData(requestLatLon){
-  // fetch(requestLatLon)
-  // .then((response)=>response.json())
-  // .then((responseWeather)=>{
-    //   console.log(responseWeather)
-    // })
-    // }
-    //  weatherData(requestLatLon);
-
-//data handler functions- parse temp, humidity, etc. 1. current forecast to local storage.  2. 5 day forecast.
-//function data.map (look up tutorial)
-//create card with info that we want
-//get weather icon from API
-
-//SAVE SEARCHED CITIES IN LOCAL STORAGE
-// localStorage.setItem
-// localStorage.getItem
 
 //fetching the data from the API.  This is the API call
 const fetchData = async (requestUrl) =>{ 
@@ -118,24 +68,62 @@ const fiveDayData = getFiveDayData(responseData)
 }
 
 const makeFiveDay = (data) => {
-  console.log("in my make five Day")
-  console.log(data)
-var cardContainer = document.querySelector(".card-container").children
+  console.log("data in makeFiveDay", data)
+let cardContainer = document.querySelector(".card-container").children
 for (let i = 0; i < cardContainer.length; i++) {
-var myImage = cardContainer[i].children[0].children[0]
-var myTemperature = cardContainer[i].children[0].children[2].children[0]
-var myHumidity = cardContainer[i].children[0].children[2].children[1]
-var myDescription = cardContainer[i].children[0].children[2].children[2]
-var myWindSpeed = cardContainer[i].children[0].children[2].children[3]
+  // console.log("today's data")
+  // console.log(data[i])
+let myImage = cardContainer[i].children[0].children[0]
 console.log(myImage)
+myImage.src = data[i].icon
+let myTemperature = cardContainer[i].children[0].children[2].children[0]
+myTemperature.innerHTML ="Temperature: " + data[i].temp
+// console.log(data[i].temp, "temp")
+let myHumidity = cardContainer[i].children[0].children[2].children[1]
+myHumidity.innerHTML ="Humidity: " + data[i].humidity
+// console.log(data[i].humidity)
+let myDescription = cardContainer[i].children[0].children[2].children[2]
+myDescription.innerHTML ="Description: " + data[i].clouds
+//console.log(data[i].clouds)
+let myWindSpeed = cardContainer[i].children[0].children[2].children[3]
+myWindSpeed.innerHTML ="Wind Speed: " + data[i].windSpeed
+
 }
 }
+
 //eventlistener for the submit button, this starts the whole machine
 submitBtn.addEventListener('click', handleSubmit);
-
-//Found code that might be useful from https://www.tutorialspoint.com/how-to-append-data-to-div-element-using-javascript#:~:text=We%20can%20append%20data%20to,content%20within%20the%20.
-// var div = document.querySelector('div');
-// var p = document.createElement('p');
-// p.textContent = 'This is some data that will be appended to the div element';
-// div.appendChild(p);
-
+  
+  //for loop here, attempting to loop through 0-4 and obtain all the data from those points?
+  // var dailyForecastDays = function(dailyForecastCard) {    
+  //   var i = [0, 1, 2, 3, 4]              
+  //   for (var i = 1; i <= num; i++) {                     
+  //     console.log(i);                                    
+  //   }
+  //   dailyForecastDays(dailyForecastCard);   
+  // };
+  
+  //I kept this around in case I need it later:
+  //  const lat = responseData.city.coord.lat 
+  //  const lon = responseData.city.coord.lon
+  //  console.log(lat) //43.0002
+  //  console.log(lon) //-107.5009
+  
+  //  const http = "https://api.openweathermap.org/data/2.5/weather?lat="
+  //  const requestLatLon = http + lat + "&lon=" + lon + "&appid=" + APIkey + measurement
+  
+  //https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=8af4e7bd8712d038a037b999da84959e&units=imperial (functional)
+  
+  //  function weatherData(requestLatLon){
+    // fetch(requestLatLon)
+    // .then((response)=>response.json())
+    // .then((responseWeather)=>{
+      //   console.log(responseWeather)
+      // })
+      // }
+      //  weatherData(requestLatLon);
+  
+  
+  //SAVE SEARCHED CITIES IN LOCAL STORAGE
+  // localStorage.setItem
+  // localStorage.getItem
