@@ -43,40 +43,6 @@ const getFiveDayData = (data)=>{
 return fiveDayArr;  
 }
 
-//for loop here, attempting to loop through 0-4 and obtain all the data from those points?
-// var dailyForecastDays = function(dailyForecastCard) {    
-//   var i = [0, 1, 2, 3, 4]              
-//   for (var i = 1; i <= num; i++) {                     
-//     console.log(i);                                    
-//   }
-//   dailyForecastDays(dailyForecastCard);   
-// };
-
-//I kept this around in case I need it later:
-//  const lat = responseData.city.coord.lat 
-//  const lon = responseData.city.coord.lon
-//  console.log(lat) //43.0002
-//  console.log(lon) //-107.5009
-
-//  const http = "https://api.openweathermap.org/data/2.5/weather?lat="
-//  const requestLatLon = http + lat + "&lon=" + lon + "&appid=" + APIkey + measurement
-
-//https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=8af4e7bd8712d038a037b999da84959e&units=imperial (functional)
-
-//  function weatherData(requestLatLon){
-  // fetch(requestLatLon)
-  // .then((response)=>response.json())
-  // .then((responseWeather)=>{
-    //   console.log(responseWeather)
-    // })
-    // }
-    //  weatherData(requestLatLon);
-
-
-//SAVE SEARCHED CITIES IN LOCAL STORAGE
-// localStorage.setItem
-// localStorage.getItem
-
 //fetching the data from the API.  This is the API call
 const fetchData = async (requestUrl) =>{ 
   const response = await fetch(requestUrl) 
@@ -102,20 +68,62 @@ const fiveDayData = getFiveDayData(responseData)
 }
 
 const makeFiveDay = (data) => {
-  console.log("in my make five Day")
-  console.log(data)
-var cardContainer = document.querySelector(".card-container").children
+  console.log("data in makeFiveDay", data)
+let cardContainer = document.querySelector(".card-container").children
 for (let i = 0; i < cardContainer.length; i++) {
   // console.log("today's data")
   // console.log(data[i])
-var myImage = cardContainer[i].children[0].children[0]
+let myImage = cardContainer[i].children[0].children[0]
 console.log(myImage)
 myImage.src = data[i].icon
-var myTemperature = cardContainer[i].children[0].children[2].children[0]
-var myHumidity = cardContainer[i].children[0].children[2].children[1]
-var myDescription = cardContainer[i].children[0].children[2].children[2]
-var myWindSpeed = cardContainer[i].children[0].children[2].children[3]
+let myTemperature = cardContainer[i].children[0].children[2].children[0]
+myTemperature.innerHTML ="Temperature: " + data[i].temp
+// console.log(data[i].temp, "temp")
+let myHumidity = cardContainer[i].children[0].children[2].children[1]
+myHumidity.innerHTML ="Humidity: " + data[i].humidity
+// console.log(data[i].humidity)
+let myDescription = cardContainer[i].children[0].children[2].children[2]
+myDescription.innerHTML ="Description: " + data[i].clouds
+//console.log(data[i].clouds)
+let myWindSpeed = cardContainer[i].children[0].children[2].children[3]
+myWindSpeed.innerHTML ="Wind Speed: " + data[i].windSpeed
+
 }
 }
+
 //eventlistener for the submit button, this starts the whole machine
 submitBtn.addEventListener('click', handleSubmit);
+  
+  //for loop here, attempting to loop through 0-4 and obtain all the data from those points?
+  // var dailyForecastDays = function(dailyForecastCard) {    
+  //   var i = [0, 1, 2, 3, 4]              
+  //   for (var i = 1; i <= num; i++) {                     
+  //     console.log(i);                                    
+  //   }
+  //   dailyForecastDays(dailyForecastCard);   
+  // };
+  
+  //I kept this around in case I need it later:
+  //  const lat = responseData.city.coord.lat 
+  //  const lon = responseData.city.coord.lon
+  //  console.log(lat) //43.0002
+  //  console.log(lon) //-107.5009
+  
+  //  const http = "https://api.openweathermap.org/data/2.5/weather?lat="
+  //  const requestLatLon = http + lat + "&lon=" + lon + "&appid=" + APIkey + measurement
+  
+  //https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=8af4e7bd8712d038a037b999da84959e&units=imperial (functional)
+  
+  //  function weatherData(requestLatLon){
+    // fetch(requestLatLon)
+    // .then((response)=>response.json())
+    // .then((responseWeather)=>{
+      //   console.log(responseWeather)
+      // })
+      // }
+      //  weatherData(requestLatLon);
+  
+  
+  //SAVE SEARCHED CITIES IN LOCAL STORAGE
+  // localStorage.setItem
+  // localStorage.getItem
