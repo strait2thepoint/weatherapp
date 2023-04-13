@@ -2,7 +2,7 @@
 const cTemp = document.getElementById('currenttemp');
 const cHumidity = document.getElementById('currenthumidity');
 const cWindSpeed = document.getElementById('currentwindSpeed');
-const cDescription = document.getElementById('currentdescription');
+const cDescription = document.getElementById('currentdecription');
 const cIcon = document.getElementById('icon');
 
 //five day forecast:
@@ -43,6 +43,28 @@ const getFiveDayData = (data)=>{
 return fiveDayArr;  
 }
 
+//Below not working at this point.  Moving on to something else.
+const getToday = (makeMainDay)=>{
+  const today = makeMainDay[0];
+  // console.log(today, "today")
+  // console.log(today.main.temp, "temp")
+  // console.log(today.weather[0].description, "clouds")
+  // console.log(today.wind.speed, 'windspeed')
+  // console.log(today.main.humidity, 'humidity')
+  // console.log(`https://openweathermap.org/img/wn/${today.weather[0].icon}@2x.png`, 'icon')
+cTemp.innerHTML = 'Temperature: ' + today.main.temp,
+cHumidity.innerHTML = 'Humidity: ' + today.main.humidity,
+cDescription.innerHTML = 'Description: ' + today.weather[0].description,
+cWindSpeed.innerHTML = 'Windspeed: ' + today.wind.speed,
+cIcon.src = `https://openweathermap.org/img/wn/${today.weather[0].icon}@2x.png`
+}
+
+//TODO:
+//make a function that turns all the searches to lower case
+//save searched cities to local storage
+//have saved cities pop up on buttons 
+//fix description in 5 day data
+
 //fetching the data from the API.  This is the API call
 const fetchData = async (requestUrl) =>{ 
   const response = await fetch(requestUrl) 
@@ -59,35 +81,35 @@ return requestUrl;
 //When we click the submit button, we call all these functions above
  const handleSubmit = async (e)=>{
   e.preventDefault()
- const city = getCity()
-const requestURL = makeURL(city)
-const responseData  = await fetchData(requestURL)
-const fiveDayData = getFiveDayData(responseData) 
-  makeFiveDay(fiveDayData)
-//fiveDayData needs to go into a call response
+ const city = getCity();
+const requestURL = makeURL(city);
+const responseData  = await fetchData(requestURL);
+const fiveDayData = getFiveDayData(responseData); 
+  makeFiveDay(fiveDayData);
+const mainDay = getToday(responseData);
+makeMainDay(mainDay);
 }
 
 const makeFiveDay = (data) => {
-  console.log("data in makeFiveDay", data)
+  // console.log("data in makeFiveDay", data);
 let cardContainer = document.querySelector(".card-container").children
 for (let i = 0; i < cardContainer.length; i++) {
-  // console.log("today's data")
-  // console.log(data[i])
+  // console.log("today's data");
+  // console.log(data[i]);
 let myImage = cardContainer[i].children[0].children[0]
-console.log(myImage)
+// console.log(myImage);
 myImage.src = data[i].icon
 let myTemperature = cardContainer[i].children[0].children[2].children[0]
 myTemperature.innerHTML ="Temperature: " + data[i].temp
-// console.log(data[i].temp, "temp")
+// console.log(data[i].temp, "temp");
 let myHumidity = cardContainer[i].children[0].children[2].children[1]
 myHumidity.innerHTML ="Humidity: " + data[i].humidity
-// console.log(data[i].humidity)
+// console.log(data[i].humidity);
 let myDescription = cardContainer[i].children[0].children[2].children[2]
 myDescription.innerHTML ="Description: " + data[i].clouds
-//console.log(data[i].clouds)
+//console.log(data[i].clouds);
 let myWindSpeed = cardContainer[i].children[0].children[2].children[3]
 myWindSpeed.innerHTML ="Wind Speed: " + data[i].windSpeed
-
 }
 }
 
